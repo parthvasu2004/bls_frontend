@@ -1,3 +1,7 @@
+// ✅ Add this at the top of each file
+const API_BASE_URL = "https://bls-backend.vercel.app";
+
+
 import { Component } from "react";
 import {
   LineChart,
@@ -31,7 +35,7 @@ class Dashboard extends Component {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5000/dashboard/analytics", {
+      const response = await fetch(`${API_BASE_URL}/dashboard/analytics', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
