@@ -1,6 +1,6 @@
 "scripts": {
   "dev": "vite",
-  "build": "rolldown-vite build"
+  "build": "vite build"
   "preview": "vite preview"
 }
 
