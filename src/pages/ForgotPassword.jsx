@@ -1,3 +1,7 @@
+// ✅ Add this at the top of each file
+const API_BASE_URL = "https://bls-backend.vercel.app";
+
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
@@ -28,7 +32,7 @@ const ForgotPassword = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/auth/verify-customer", {
+      const response = await fetch(`${API_BASE_URL}/auth/verify-customer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
