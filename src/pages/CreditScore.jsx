@@ -1,3 +1,7 @@
+// ✅ Add this at the top of each file
+const API_BASE_URL = "https://bls-backend.vercel.app";
+
+
 import { Component } from "react";
 import {
   RadarChart,
@@ -32,7 +36,7 @@ class CreditScore extends Component {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5000/credit-score", {
+      const response = await fetch(`${API_BASE_URL}/credit-score', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
