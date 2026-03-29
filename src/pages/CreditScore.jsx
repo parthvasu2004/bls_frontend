@@ -36,7 +36,7 @@ class CreditScore extends Component {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`${API_BASE_URL}/credit-score', {
+      const response = await fetch(`${API_BASE_URL}/credit-score`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
