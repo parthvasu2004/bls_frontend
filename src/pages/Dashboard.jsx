@@ -35,7 +35,7 @@ class Dashboard extends Component {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`${API_BASE_URL}/dashboard/analytics', {
+      const response = await fetch(`${API_BASE_URL}/dashboard/analytics`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
