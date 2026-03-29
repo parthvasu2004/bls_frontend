@@ -1,3 +1,7 @@
+// ✅ Add this at the top of each file
+const API_BASE_URL = "https://bls-backend.vercel.app";
+
+
 import { Component } from "react";
 import { Navigate } from "react-router-dom";
 import Dashboard from "./Dashboard";
@@ -47,7 +51,7 @@ class Home extends Component {
     if (!token) return;
 
     try {
-      const response = await fetch("http://localhost:5000/auth/me", {
+      const response = await fetch(`${API_BASE_URL}/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -121,7 +125,7 @@ class Home extends Component {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/loans/", {
+      const response = await fetch(`${API_BASE_URL}/loans/`, {
         method: "POST",
         headers: this.getAuthHeaders(),
         body: JSON.stringify(data),
@@ -206,7 +210,7 @@ class Home extends Component {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/loans/${loanId}/ledger`,
+        `${API_BASE_URL}/loans/${loanId}/ledger`,
         {
           headers: this.getAuthHeaders(),
         }
@@ -242,7 +246,7 @@ class Home extends Component {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/customers/overview",
+        `${API_BASE_URL}/customers/overview`,
         {
           headers: this.getAuthHeaders(),
         }
@@ -270,7 +274,7 @@ class Home extends Component {
   fetchEmiAmount = async (loanId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/loans/${loanId}/emi`,
+        `${API_BASE_URL}/loans/${loanId}/emi`,
         {
           headers: this.getAuthHeaders(),
         }
