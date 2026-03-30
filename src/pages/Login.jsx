@@ -1,6 +1,4 @@
-// ✅ Add this at the top of each file
 const API_BASE_URL = "https://bls-backend.vercel.app";
-
 
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -8,19 +6,19 @@ import "../App.css";
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Redirect if already logged in
+  // ✅ Redirect only if token exists
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
     const token = localStorage.getItem("token");
-    
-    if (isLoggedIn && token) {
+    if (token) {
       navigate("/home", { replace: true });
     }
   }, [navigate]);
@@ -49,18 +47,17 @@ const Login = () => {
         return;
       }
 
-      // Store token and login status
+      // ✅ Store ONLY token (no isLoggedIn needed)
       localStorage.setItem("token", data.token);
-      localStorage.setItem("isLoggedIn", "true");
 
-      setMessage("Login successful! Redirecting...");
-      
+      setMessage("Login successful!");
+
       setTimeout(() => {
         navigate("/home");
       }, 500);
     } catch (error) {
       console.error("Login error:", error);
-      setMessage("Network error. Please check if the server is running.");
+      setMessage("Network error. Backend check kar.");
       setIsLoading(false);
     }
   };
@@ -78,12 +75,11 @@ const Login = () => {
 
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label>Email</label>
             <input
               type="email"
-              id="email"
               name="email"
-              placeholder="Enter your email"
+              placeholder="Enter email"
               value={formData.email}
               onChange={handleChange}
               required
@@ -92,12 +88,11 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label>Password</label>
             <input
               type="password"
-              id="password"
               name="password"
-              placeholder="Enter your password"
+              placeholder="Enter password"
               value={formData.password}
               onChange={handleChange}
               required
@@ -105,16 +100,12 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" className="auth-btn" disabled={isLoading}>
+          <button type="submit" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        <p className="auth-link">
-          <Link to="/forgot-password">Forgot Password?</Link>
-        </p>
-
-        <p className="auth-link">
+        <p>
           New user? <Link to="/register">Register here</Link>
         </p>
       </div>
